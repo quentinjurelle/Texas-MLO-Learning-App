@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#17212d"/>
+  <rect x="72" y="92" width="368" height="328" rx="34" fill="#eef8fa"/>
+  <path d="M118 186h276v34H118zm0 74h276v34H118zm0 74h188v34H118z" fill="#1f7a8c"/>
+  <text x="256" y="154" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="68" font-weight="800" fill="#17212d">MLO</text>
+</svg>

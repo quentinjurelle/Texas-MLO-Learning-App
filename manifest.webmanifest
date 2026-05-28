@@ -1,0 +1,18 @@
+{
+  "name": "Texas MLO Interactive Learning App",
+  "short_name": "Texas MLO",
+  "description": "Interactive Texas mortgage loan officer exam prep and operational training app.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#eef2f5",
+  "theme_color": "#17212d",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

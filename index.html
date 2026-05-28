@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Texas MLO Interactive Learning App</title>
+  <meta name="theme-color" content="#17212d">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Texas MLO">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">MLO</div>
+      <div>
+        <h1>Texas MLO Trainer</h1>
+        <p>5-day operational exam prep</p>
+      </div>
+    </div>
+    <nav class="nav" aria-label="Main">
+      <button class="nav-button active" data-view="dashboard">Dashboard</button>
+      <button class="nav-button" data-view="syllabus">5-Day Syllabus</button>
+      <button class="nav-button" data-view="flashcards">Flashcards</button>
+      <button class="nav-button" data-view="quiz">Quiz Mode</button>
+      <button class="nav-button" data-view="drills">Math & Timing</button>
+      <button class="nav-button" data-view="complianceLab">Compliance Lab</button>
+      <button class="nav-button" data-view="misslog">Miss Log</button>
+      <button class="nav-button" data-view="library">Library</button>
+    </nav>
+    <div class="sidebar-footer">
+      <button id="exportProgress" class="secondary-button">Export progress</button>
+      <button id="resetProgress" class="danger-button">Reset</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <section id="dashboard" class="view active-view">
+      <div class="view-header">
+        <div>
+          <p class="eyebrow">Current mission</p>
+          <h2>Execute the plan, track the misses, close the gaps.</h2>
+        </div>
+        <div class="date-card">
+          <span id="todayLabel"></span>
+          <strong id="recommendedDay">Day 1</strong>
+        </div>
+      </div>
+
+      <div class="metrics-grid">
+        <article class="metric">
+          <span>Total pathway</span>
+          <strong id="totalPathProgress">0%</strong>
+        </article>
+        <article class="metric">
+          <span>Mastery score</span>
+          <strong id="masteryScore">0%</strong>
+        </article>
+        <article class="metric">
+          <span>Current grade</span>
+          <strong id="currentGrade">N/A</strong>
+        </article>
+        <article class="metric">
+          <span>Quiz average</span>
+          <strong id="quizAverage">0%</strong>
+        </article>
+      </div>
+
+      <div class="two-column">
+        <section class="panel">
+          <div class="panel-header">
+            <h3>Today’s Execution Block</h3>
+            <button class="secondary-button small" data-jump="syllabus">Open syllabus</button>
+          </div>
+          <div id="todayPlan" class="today-plan"></div>
+        </section>
+        <section class="panel">
+          <div class="panel-header">
+            <h3>Active Weak Areas</h3>
+            <button class="secondary-button small" data-jump="misslog">Open miss log</button>
+          </div>
+          <div id="weakAreas" class="weak-areas"></div>
+        </section>
+      </div>
+      <section class="panel mastery-panel">
+        <div class="panel-header">
+          <h3>Mastery by Category</h3>
+          <button class="secondary-button small" data-jump="quiz">Test weak areas</button>
+        </div>
+        <div id="masteryBreakdown" class="mastery-breakdown"></div>
+      </section>
+    </section>
+
+    <section id="syllabus" class="view">
+      <div class="view-header compact">
+        <div>
+          <p class="eyebrow">Execution plan</p>
+          <h2>Five-Day Self-Paced Syllabus</h2>
+        </div>
+        <div class="segmented" id="dayTabs"></div>
+      </div>
+      <div id="dayDetail" class="day-detail"></div>
+    </section>
+
+    <section id="flashcards" class="view">
+      <div class="view-header compact">
+        <div>
+          <p class="eyebrow">Active recall</p>
+          <h2>Flashcards</h2>
+        </div>
+        <div class="toolbar">
+          <select id="cardDayFilter" aria-label="Filter cards by day">
+            <option value="all">All days</option>
+            <option value="1">Day 1</option>
+            <option value="2">Day 2</option>
+            <option value="3">Day 3</option>
+          </select>
+          <select id="cardModeFilter" aria-label="Filter cards by status">
+            <option value="all">All cards</option>
+            <option value="missed">Missed</option>
+            <option value="unknown">Unseen</option>
+            <option value="known">Known</option>
+          </select>
+        </div>
+      </div>
+      <div class="flashcard-layout">
+        <div class="study-card" id="studyCard">
+          <div class="card-meta" id="cardMeta"></div>
+          <button class="flip-card" id="flipCard">
+            <span id="cardSideLabel">Front</span>
+            <strong id="cardText"></strong>
+          </button>
+          <div class="card-actions">
+            <button id="prevCard" class="secondary-button">Previous</button>
+            <button id="markMissed" class="danger-button">Missed</button>
+            <button id="markKnown" class="primary-button">Known</button>
+            <button id="nextCard" class="secondary-button">Next</button>
+          </div>
+        </div>
+        <aside class="panel card-list-panel">
+          <h3>Current Set</h3>
+          <div id="cardList" class="card-list"></div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="quiz" class="view">
+      <div class="view-header compact">
+        <div>
+          <p class="eyebrow">Exam pressure</p>
+          <h2>Quiz Mode</h2>
+        </div>
+        <div class="toolbar">
+          <select id="quizCategory">
+            <option value="all">All categories</option>
+          </select>
+          <button id="startQuiz" class="primary-button">Start 20-question quiz</button>
+        </div>
+      </div>
+      <div id="quizArea" class="quiz-area"></div>
+    </section>
+
+    <section id="drills" class="view">
+      <div class="view-header compact">
+        <div>
+          <p class="eyebrow">Precision work</p>
+          <h2>Math & Timing Drills</h2>
+        </div>
+        <div class="segmented">
+          <button class="segment active" data-drill="math">Math</button>
+          <button class="segment" data-drill="timing">Timing</button>
+        </div>
+      </div>
+      <div id="drillArea" class="drill-grid"></div>
+    </section>
+
+    <section id="complianceLab" class="view">
+      <div class="view-header compact">
+        <div>
+          <p class="eyebrow">Applied mastery</p>
+          <h2>Compliance Lab</h2>
+        </div>
+        <div class="toolbar">
+          <select id="labModuleSelect" aria-label="Choose compliance module"></select>
+        </div>
+      </div>
+      <div id="labModule" class="lab-module"></div>
+    </section>
+
+    <section id="misslog" class="view">
+      <div class="view-header compact">
+        <div>
+          <p class="eyebrow">Remediation</p>
+          <h2>Miss Log</h2>
+        </div>
+        <button id="addMiss" class="primary-button">Add miss</button>
+      </div>
+      <div id="missLogList" class="miss-log"></div>
+    </section>
+
+    <section id="library" class="view">
+      <div class="view-header compact">
+        <div>
+          <p class="eyebrow">Source materials</p>
+          <h2>Printable Manuals & PDFs</h2>
+        </div>
+      </div>
+      <div id="libraryLinks" class="library-grid"></div>
+    </section>
+  </main>
+
+  <template id="missFormTemplate">
+    <form class="miss-form">
+      <label>Missed concept <input name="concept" required></label>
+      <label>Why it was missed <textarea name="why" rows="2"></textarea></label>
+      <label>Correct rule <textarea name="rule" rows="2"></textarea></label>
+      <label>Example <textarea name="example" rows="2"></textarea></label>
+      <div class="form-actions">
+        <button type="submit" class="primary-button">Save</button>
+        <button type="button" class="secondary-button cancel-miss">Cancel</button>
+      </div>
+    </form>
+  </template>
+
+  <script src="app-data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator && location.protocol !== "file:") {
+      navigator.serviceWorker.register("service-worker.js");
+    }
+  </script>
+</body>
+</html>
