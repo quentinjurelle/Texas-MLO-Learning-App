@@ -303,6 +303,84 @@ h3 {
   box-shadow: var(--shadow);
 }
 
+.assignment-list {
+  display: grid;
+  gap: 18px;
+}
+
+.assignment-card {
+  display: grid;
+  gap: 16px;
+}
+
+.assignment-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.assignment-block {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.assignment-block h4 {
+  margin: 0 0 10px;
+}
+
+.assignment-block ul,
+.assignment-block ol {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.assignment-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.strategy-list {
+  display: grid;
+  gap: 18px;
+}
+
+.strategy-card {
+  display: grid;
+  gap: 14px;
+}
+
+.strategy-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  gap: 14px;
+}
+
+.strategy-panel {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.strategy-panel h4 {
+  margin: 0 0 8px;
+}
+
+.strategy-panel ul,
+.strategy-panel ol {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.strategy-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .path-section-header {
   display: flex;
   align-items: center;
@@ -650,7 +728,7 @@ select, input, textarea {
     margin-top: 18px;
   }
 
-  .metrics-grid, .two-column, .flashcard-layout {
+  .metrics-grid, .two-column, .flashcard-layout, .assignment-grid, .strategy-grid {
     grid-template-columns: 1fr;
   }
 
