@@ -24,6 +24,9 @@
     <nav class="nav" aria-label="Main">
       <button class="nav-button active" data-view="dashboard">Dashboard</button>
       <button class="nav-button" data-view="syllabus">5-Day Syllabus</button>
+      <button class="nav-button" data-view="assignments">Chapter Assignments</button>
+      <button class="nav-button" data-view="strategyCoach">Strategy Coach</button>
+      <button class="nav-button" data-view="passBridge">70→75 Pass Bridge</button>
       <button class="nav-button" data-view="flashcards">Flashcards</button>
       <button class="nav-button" data-view="quiz">Quiz Mode</button>
       <button class="nav-button" data-view="drills">Math & Timing</button>
@@ -103,6 +106,38 @@
         <div class="segmented" id="dayTabs"></div>
       </div>
       <div id="dayDetail" class="day-detail"></div>
+    </section>
+
+    <section id="assignments" class="view">
+      <div class="view-header compact">
+        <div>
+          <p class="eyebrow">Reading and testing</p>
+          <h2>Chapter Assignments</h2>
+        </div>
+      </div>
+      <div id="assignmentList" class="assignment-list"></div>
+    </section>
+
+    <section id="strategyCoach" class="view">
+      <div class="view-header compact">
+        <div>
+          <p class="eyebrow">Exam strategy and scenarios</p>
+          <h2>Strategy Coach</h2>
+        </div>
+        <button id="startStrategyMixed" class="primary-button">Start 25-question strategy test</button>
+      </div>
+      <div id="strategyCoachList" class="strategy-list"></div>
+    </section>
+
+    <section id="passBridge" class="view">
+      <div class="view-header compact">
+        <div>
+          <p class="eyebrow">Targeted retake readiness</p>
+          <h2>70→75 Pass Bridge</h2>
+        </div>
+        <button id="startPassBridgeTest" class="primary-button">Start 25-question bridge test</button>
+      </div>
+      <div id="passBridgeList" class="strategy-list"></div>
     </section>
 
     <section id="flashcards" class="view">
